@@ -38,10 +38,10 @@ export default class App extends React.Component<{}, AppState> {
                 </Row>
 
                 <Row noGutters style={{ height: "100%" }}>
-                    <Col xs={12} sm={4}>
+                    <Col xs={12} sm={5}>
                         <div id="editor">{defaultEditorContent}</div>
                     </Col>
-                    <Col id="tabs-container">
+                    <Col id="data-interface-container">
                         <DataInterface database={this.state.database}/>
                     </Col>
                 </Row>

@@ -27,6 +27,6 @@ body {
 }
 
 #tabs-container {
-  height: 93vh;
+  height: 95%;
   overflow: auto;
 }

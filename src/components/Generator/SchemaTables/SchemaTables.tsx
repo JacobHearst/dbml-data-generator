@@ -21,8 +21,9 @@ export default class SchemaTables extends React.Component<SchemaTablesProps, Sch
 
     render() {
         return (
-            this.state.database.schemas[0].tables.map((table: any) => (
-                <Accordion defaultActiveKey={table.name} key={table.name}>
+            this.state.database.schemas[0].tables.map((table: any, index: number) => (
+                // We only want the first table expanded
+                <Accordion defaultActiveKey={index === 0 ? table.name : undefined} key={table.name}>
                     <Accordion.Toggle as="h3" style={{ textDecoration: "underline", cursor: "pointer"}} eventKey={table.name}>
                         {table.name}
                     </Accordion.Toggle>
