@@ -1,14 +1,32 @@
 body, html {
   padding: 0;
   margin: 0;
-  height: 100vh;
-  overflow: hidden;
 }
 
-nav {
+body {
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+#top-bar {
   border-bottom: 1px solid gray;
+  background-color: white;
+  min-height: 50px;
+  height: 5%;
 }
 
 #editor {
-  height: 100vh;
+  height: 95%;
+}
+
+#tabs-container {
+  height: 93vh;
+  overflow: auto;
 }
