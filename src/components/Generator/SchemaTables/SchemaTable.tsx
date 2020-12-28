@@ -3,10 +3,11 @@ import { Form, Table } from 'react-bootstrap'
 
 interface SchemaTableProps {
     table: any
-    onFieldChange: typeof FieldChangeHandler
+    onFieldChange: FieldChangeHandler
 }
 
-export let FieldChangeHandler: (fieldId: String, value: any) => void
+let FieldChangeHandlerDef: (fieldId: String, value: any) => void
+export type FieldChangeHandler = typeof FieldChangeHandlerDef
 
 export default class SchemaTable extends React.Component<SchemaTableProps, {}> {
     constructor(props: SchemaTableProps) {

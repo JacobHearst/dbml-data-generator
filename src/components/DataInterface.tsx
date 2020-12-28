@@ -1,5 +1,6 @@
 import React from 'react'
 import { Tabs, Tab, Container } from 'react-bootstrap'
+import GeneratorControls from './Generator/GeneratorControls'
 import SchemaTables from './Generator/SchemaTables/SchemaTables'
 
 interface DataInterfaceProps {
@@ -27,6 +28,8 @@ export default class DataInterface extends React.Component<DataInterfaceProps, D
                 <Tab eventKey="design" title="Design" disabled></Tab>
                 <Tab eventKey="generate" title="Generate">
                     <Container>
+                        <GeneratorControls />
+                        <hr/>
                         <h2>Tables</h2>
                         <SchemaTables database={this.state.database} onFieldChange={this.onFieldChange} />
                     </Container>

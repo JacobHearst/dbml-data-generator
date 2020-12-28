@@ -4,7 +4,7 @@ import SchemaTable, { FieldChangeHandler } from './SchemaTable'
 
 interface SchemaTablesProps {
     database: Object
-    onFieldChange: typeof FieldChangeHandler
+    onFieldChange: FieldChangeHandler
 }
 
 interface SchemaTablesState {
