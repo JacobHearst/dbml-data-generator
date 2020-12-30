@@ -1,6 +1,7 @@
 import React from 'react'
 import { Col, Container, NavbarBrand, Row } from 'react-bootstrap'
 import DataInterface from './components/DataInterface';
+import { debounce } from './services/Utility';
 const { Parser } = require('@dbml/core');
 
 interface AppState {
@@ -8,22 +9,28 @@ interface AppState {
 }
 
 export default class App extends React.Component<{}, AppState> {
+    editor: any
+
     constructor(props: {}) {
         super(props)
         this.state = {
             database: Parser.parse(defaultEditorContent, 'dbml')
         }
+
+        this.onEditorChange = this.onEditorChange.bind(this)
+    }
+
+    onEditorChange() {
+        const dbml = this.editor.session.getValue()
+        const database = Parser.parse(dbml, 'dbml')
+        this.setState({ database })
     }
 
     componentDidMount() {
-        const editor = ace.edit("editor")
-        editor.setTheme("ace/theme/dracula")
-        editor.session.setMode("ace/mode/dbml")
-        editor.session.on("change", () => {
-            const dbml = editor.session.getValue()
-            const database = Parser.parse(dbml, 'dbml')
-            this.setState({ database })
-        })
+        this.editor = ace.edit("editor")
+        this.editor.setTheme("ace/theme/dracula")
+        this.editor.session.setMode("ace/mode/dbml")
+        this.editor.session.on("change", debounce(this.onEditorChange, 250))
     }
 
     render() {
