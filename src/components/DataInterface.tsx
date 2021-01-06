@@ -1,14 +1,16 @@
 import React from 'react'
 import { Tabs, Tab, Container } from 'react-bootstrap'
+import GeneratorService from '../services/GeneratorService'
+import Database from '../types/model_structure/database'
 import GeneratorControls from './Generator/GeneratorControls'
 import SchemaTables from './Generator/SchemaTables/SchemaTables'
 
 interface DataInterfaceProps {
-    database: any;
+    database: Database;
 }
 
 interface DataInterfaceState {
-    database: any;
+    database: Database;
 }
 
 export default class DataInterface extends React.Component<DataInterfaceProps, DataInterfaceState> {

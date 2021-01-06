@@ -1,8 +1,10 @@
 import React from 'react'
 import { Form, Table } from 'react-bootstrap'
+import Field from '../../../types/model_structure/field'
+import * as DBMLTable from '../../../types/model_structure/table'
 
 interface SchemaTableProps {
-    table: any
+    table: DBMLTable.default
     onFieldChange: FieldChangeHandler
 }
 
@@ -27,15 +29,17 @@ export default class SchemaTable extends React.Component<SchemaTableProps, {}> {
                 <thead>
                     <tr>
                         <th>Column name</th>
+                        <th>Primary Key?</th>
                         <th>Column SQL type</th>
                         <th>% of null values</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        table.fields.map(({ name, type: { type_name } }: any) => (
+                        table.fields.map(({ name, pk, type: { type_name } }: Field) => (
                             <tr key={name}>
                                 <td>{name}</td>
+                                <td>{pk ? "True" : "False"}</td>
                                 <td>{type_name}</td>
                                 <td>
                                     <Form.Control

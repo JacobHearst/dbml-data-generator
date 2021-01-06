@@ -2,6 +2,7 @@
   "name": "dbml-data-gen",
   "version": "0.1.0",
   "private": true,
+  "types": "src/types/index.d.ts",
   "dependencies": {
     "@dbml/core": "^2.1.1",
     "bootstrap": "^4.5.3",

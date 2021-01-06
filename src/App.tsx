@@ -1,21 +1,26 @@
 import React from 'react'
 import { Col, Container, NavbarBrand, Row } from 'react-bootstrap'
 import DataInterface from './components/DataInterface';
+import GeneratorService from './services/GeneratorService';
 import { debounce } from './services/Utility';
+import Database from './types/model_structure/database';
 const { Parser } = require('@dbml/core');
 
 interface AppState {
-    database: Object
+    database: Database
 }
 
 export default class App extends React.Component<{}, AppState> {
     editor: any
+    generatorService = new GeneratorService()
 
     constructor(props: {}) {
         super(props)
         this.state = {
             database: Parser.parse(defaultEditorContent, 'dbml')
         }
+
+        this.generatorService.generateData(this.state.database, 10)
 
         this.onEditorChange = this.onEditorChange.bind(this)
     }
@@ -24,6 +29,8 @@ export default class App extends React.Component<{}, AppState> {
         const dbml = this.editor.session.getValue()
         const database = Parser.parse(dbml, 'dbml')
         this.setState({ database })
+        
+        this.generatorService.generateData(database, 10)
     }
 
     componentDidMount() {
